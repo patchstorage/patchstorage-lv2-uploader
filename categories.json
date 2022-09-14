@@ -1,0 +1,37 @@
+{
+    "utility": [
+        "Limiter",
+        "Gate",
+        "Utility",
+        "Mixer",
+        "Analyser",
+        "Amplifier",
+        "Modulator",
+        "Equaliser",
+        "Expander",
+        "Dynamics"
+    ],
+    "effect": [
+        "Filter",
+        "Delay",
+        "Reverb",
+        "Distortion",
+        "Phaser",
+        "Chorus",
+        "Pitch Shifter",
+        "Spatial",
+        "Flanger",
+        "Compressor",
+        "Highpass",
+        "Lowpass",
+        "Parametric",
+        "Simulator",
+        "Spectral"
+    ],
+    "synthesizer": [
+        "Oscillator",
+        "Synthesizer",
+        "Instrument",
+        "Generator"
+    ]
+}
