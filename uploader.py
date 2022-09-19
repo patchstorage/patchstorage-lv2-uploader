@@ -307,16 +307,11 @@ def create_data_dump(url: str) -> None:
     validated: dict = {}
 
     uris = Device.get_all_uris(url)
-    paths = get_plugins_paths()
     
     for uri in uris:
         click.echo(f'Processing {uri}')
         data = Device.get_single_uri(url, uri)
         folder = data['bundles'][0].split('/')[-2]
-
-        # no plugin files - skip
-        if folder not in paths:
-            continue
 
         if len(data['bundles']) > 1:
             click.echo(f'More than one bundle for {uri}. SKIP')
