@@ -13,7 +13,7 @@ from lv2 import Bundle, MultiplePluginsDetected, PluginFieldMissing, BundleBadCo
 
 
 PS_API_URL = 'https://patchstorage.com/api/beta'
-PS_LV2_PLATFORM_ID = 5027
+PS_LV2_PLATFORM_ID = 8046
 PS_LICENSES = None
 PS_CATEGORIES = None
 PS_SOURCES = None
@@ -24,8 +24,9 @@ PATH_PLUGINS = PATH_ROOT / 'plugins'
 PATH_DIST = PATH_ROOT / 'dist'
 
 # for dev purposes
-if False:
+if True:
     PS_API_URL = 'http://localhost/api/beta'
+    PS_LV2_PLATFORM_ID = 5027
 
 
 
@@ -699,5 +700,5 @@ if __name__ == '__main__':
 
     try:
         cli()
-    except (click.Abort, Exception) as e:
+    except (click.Abort) as e:
         click.secho(f'Error: {str(e)}', fg='red')
