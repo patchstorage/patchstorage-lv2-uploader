@@ -160,7 +160,7 @@ class Patchstorage:
 
         for file in data['files']:
             file_id = Patchstorage.upload_file(
-                file['path'], target_id=file.get('target'))
+                file['path'], target_id=file.get('target_id'))
             file_ids.append(int(file_id))
 
         data['artwork'] = int(artwork_id)
@@ -190,7 +190,7 @@ class Patchstorage:
 
         for file in data['files']:
             file_id = Patchstorage.upload_file(
-                file['path'], target_id=file.get('target'))
+                file['path'], target_id=file.get('target_id'))
             file_ids.append(int(file_id))
 
         data['artwork'] = int(artwork_id)
