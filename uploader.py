@@ -17,7 +17,7 @@ PATH_PLUGINS = PATH_ROOT / 'plugins'
 PATH_DIST = PATH_ROOT / 'dist'
 
 # for dev purposes
-if True:
+if False:
     PS_API_URL = 'http://localhost/api/beta'
     PS_LV2_PLATFORM_ID = 5027
 
@@ -58,7 +58,7 @@ class Patchstorage:
 
         click.echo(f'Getting supported targets: {url}')
 
-        r = requests.get(url)
+        r = requests.get(url, headers={'User-Agent': 'patchbot-1.0'})
         data = r.json()
 
         assert r.status_code == 200, r.content
@@ -297,13 +297,13 @@ class PluginManager:
             raise PluginManagerException(f'Missing {filename} file in {PATH_ROOT}')
 
     @staticmethod
-    def do_cleanup() -> None:
-        if os.path.exists(PATH_DIST):
+    def do_cleanup(path: pathlib.Path) -> None:
+        if path.exists():
             try:
-                shutil.rmtree(PATH_DIST)
+                shutil.rmtree(path)
             except OSError:
-                raise PluginManagerException(f'Failed to cleanup {PATH_DIST}')
-        os.mkdir(PATH_DIST)
+                raise PluginManagerException(f'Failed to cleanup {path}')
+        os.mkdir(path)
 
     def scan_plugins_directory(self) -> dict:
         if not self.plugins_path.exists():
@@ -356,7 +356,7 @@ class PluginManager:
         return self.multi_bundles_map[package_name]
     
     def prepare_bundles(self) -> None:
-        self.do_cleanup()
+        self.do_cleanup(PATH_DIST)
 
         for bundle in self.multi_bundles_map:
             self.prepare_bundle(self.multi_bundles_map[bundle])
@@ -390,7 +390,7 @@ class PluginManager:
             default_tags=PS_TAGS_DEFAULT
         )
 
-        os.mkdir(path_plugins_dist)
+        self.do_cleanup(path_plugins_dist)
 
         debug_path = bundle.create_debug_json(path_data_json)
         click.echo(f'Created: {debug_path}')
@@ -428,7 +428,8 @@ class PluginManager:
             try:
                 Patchstorage.push(username, folder, auto, force)
             except PatchstorageException as e:
-                raise PluginManagerException(e)
+                click.secho(f'Error: {e}', fg='red')
+                continue
 
 
 @click.group()

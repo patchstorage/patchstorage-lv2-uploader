@@ -306,7 +306,12 @@ class Plugin(BaseParser):
     def get_comment(self) -> str:
         assert self._data is not None
 
-        return self._data.get('comment', 'No description available.')
+        value = self._data.get('comment')
+
+        if not value:
+            value = 'No description available.'
+
+        return value
 
 
 class BundleBadContents(Exception):
@@ -534,7 +539,7 @@ class PatchstorageBundle(Bundle):
             if p.get_author():
                 text += f'Credit: {p.get_author()}\n\n'
 
-            text += f'{p.get_comment()}\n\n\n\n'
+            text += f'{p.get_comment()}\n\n\n'
 
         return text.strip()
 
