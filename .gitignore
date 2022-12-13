@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 # Project specific
+.vscode/
 backup/
-builds/
+dist/
 data.json

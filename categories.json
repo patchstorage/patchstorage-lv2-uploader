@@ -1,5 +1,7 @@
 {
-    "utility": [
+    "117": [
+        "ps:utility",
+        "MIDI",
         "Limiter",
         "Gate",
         "Utility",
@@ -9,9 +11,13 @@
         "Modulator",
         "Equaliser",
         "Expander",
-        "Dynamics"
+        "Dynamics",
+        "Converter",
+        "ControlVoltage"
     ],
-    "effect": [
+    "77": [
+        "ps:effect",
+        "Bandpass",
         "Filter",
         "Delay",
         "Reverb",
@@ -26,9 +32,11 @@
         "Lowpass",
         "Parametric",
         "Simulator",
-        "Spectral"
+        "Spectral",
+        "Waveshaper"
     ],
-    "synthesizer": [
+    "74": [
+        "ps:synthesizer",
         "Oscillator",
         "Synthesizer",
         "Instrument",

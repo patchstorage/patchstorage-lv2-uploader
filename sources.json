@@ -1,4 +1,22 @@
 {
+    "https://github.com/x42/tuna.lv2": [
+        "tuna.lv2"
+    ],
+    "https://github.com/thunderox/triceratops": [
+        "triceratops.lv2"
+    ],
+    "https://github.com/x42/tinyamp.lv2": [
+        "tinygain.lv2"
+    ],
+    "https://github.com/x42/zconvo.lv2": [
+        "zeroconvo.lv2"
+    ],
+    "https://github.com/brummer10/screcord.lv2": [
+        "sc_record.lv2"
+    ],
+    "https://github.com/falkTX/rubberband": [
+        "rubberband.lv2"
+    ],
     "https://github.com/moddevices/caps-lv2": [
         "mod-caps-AmpVTS.lv2",
         "mod-caps-AutoFilter.lv2",
