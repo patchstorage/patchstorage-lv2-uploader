@@ -345,7 +345,14 @@ class PluginManager:
 
         for package_name, targets_info in candidates.items():
             multi_bundle = PatchstorageMultiTargetBundle(package_name, targets_info)
-            multi_bundle.validate_basic_files()
+
+            try:
+                multi_bundle.validate_basic_files()
+            except (BundleBadContents, PluginFieldMissing) as e:
+                msg = f'Error: {e}'
+                click.secho(msg, fg='red')
+                continue
+    
             self.multi_bundles_map[package_name] = multi_bundle
 
         return self.multi_bundles_map
