@@ -340,7 +340,7 @@ class Bundle(BaseParser):
                 f"No manifest.ttl in folder {self.package_name}")
 
         # check if we have .so file
-        if not self.manifest_path.glob('*.so'):
+        if not list(self.path.glob('*.so')):
             raise BundleBadContents(
                 f"No .so file in folder {self.package_name}")
 
