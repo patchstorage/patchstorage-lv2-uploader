@@ -1,4 +1,7 @@
 {
+    "https://github.com/micahvdm/profiler": [
+        "profiler.lv2"
+    ],
     "https://github.com/x42/tuna.lv2": [
         "tuna.lv2"
     ],
