@@ -1,11 +1,13 @@
-from typing import Optional, Type, Union, Any, Optional, Iterator, Dict, List
+from typing import Optional, Union, Any, Optional, Iterator, Dict, List
 import os
+from platform import system
 import json
 import tarfile
 from copy import deepcopy
 import rdflib
 import pathlib
 import shutil
+
 
 rdfschema = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
 rdfsyntax = rdflib.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
@@ -71,8 +73,9 @@ class BaseParser():
             if path.startswith('http'):
                 return None
             if path.startswith('file:///'):
-                path = path.replace('file:///', '')
-            return pathlib.Path(path)
+                if system() == 'Windows':
+                    return pathlib.Path(path.replace('file:///', ''))
+                return pathlib.Path(path.replace('file://', ''))
         return None
 
     def _triples(self, triple: list) -> Iterator[list]:
@@ -370,9 +373,11 @@ class Bundle(BaseParser):
         file_path = self._parse_path(path)
 
         if file_path is None:
+            print(f"Warning: Bad path {path}")
             return
 
         if not file_path.exists():
+            print(f"Warning: File not found {file_path}")
             return
 
         if file_path in self.parsed_files:
@@ -390,7 +395,7 @@ class Bundle(BaseParser):
                 if bad_file_path.endswith('manifest.ttl'):
                     raise PluginBadContents(
                         f'Bad syntax {bad_file_path}')
-                print(f"Bad syntax {bad_file_path} (ignored)")
+                print(f"Warning: Bad syntax {bad_file_path} (ignored)")
 
 
 class PatchstorageBundle(Bundle):
@@ -570,7 +575,7 @@ class PatchstorageBundle(Bundle):
     def create_artwork(self, target_path: pathlib.Path) -> pathlib.Path:
         assert self._data is not None
 
-        shutil.copy2(self._data['plugins'][0]['screenshot'], target_path)
+        shutil.copyfile(self._data['plugins'][0]['screenshot'], target_path)
         self.dist_artwork_path = target_path
 
         return target_path
