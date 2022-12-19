@@ -56,7 +56,7 @@ class Patchstorage:
 
         url = f"{PS_API_URL}/platforms/{platform_id}"
 
-        click.echo(f'Getting supported targets: {url}')
+        click.echo(f'Getting supported targets from {url}')
 
         r = requests.get(url, headers={'User-Agent': 'patchbot-1.0'})
         data = r.json()
@@ -321,7 +321,7 @@ class PluginManager:
             t_folder = self.plugins_path / t['slug']
 
             if not t_folder.exists():
-                click.echo(f'Warning: No folder found for target {t["slug"]}')
+                click.echo(f'Warning: No folder found for target \'{t["slug"]}\'')
                 continue
 
             for p_path in t_folder.iterdir():
