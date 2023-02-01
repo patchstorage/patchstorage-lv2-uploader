@@ -298,12 +298,15 @@ class PluginManager:
 
     @staticmethod
     def do_cleanup(path: pathlib.Path) -> None:
+        assert isinstance(path, pathlib.Path), f'Invalid path type: {path}'
+
         if path.exists():
             try:
                 shutil.rmtree(path)
             except OSError:
                 raise PluginManagerException(f'Failed to cleanup {path}')
-        os.mkdir(path)
+        
+        path.mkdir(parents=True, exist_ok=True)
 
     def scan_plugins_directory(self) -> dict:
         if not self.plugins_path.exists():
@@ -363,8 +366,6 @@ class PluginManager:
         return self.multi_bundles_map[package_name]
     
     def prepare_bundles(self) -> None:
-        self.do_cleanup(PATH_DIST)
-
         for bundle in self.multi_bundles_map:
             self.prepare_bundle(self.multi_bundles_map[bundle])
 
@@ -452,6 +453,7 @@ def prepare(plugin_name: str) -> None:
 
     manager = PluginManager()
     manager.scan_plugins_directory()
+    manager.do_cleanup(PATH_DIST)
 
     if plugin_name == 'all':
         manager.prepare_bundles()
