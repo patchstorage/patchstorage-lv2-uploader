@@ -67,7 +67,7 @@ class Patchstorage:
         return data['targets']
 
     @staticmethod
-    def upload_file(path: str, target_id: int = None) -> str:
+    def upload_file(path: str, target_id: Optional[int] = None) -> str:
         assert isinstance(path, str)
         assert isinstance(target_id, int) or target_id is None
 
@@ -96,7 +96,7 @@ class Patchstorage:
         return r.json()['id']
 
     @staticmethod
-    def get(id: str = None, uids: list = None) -> Optional[dict]:
+    def get(id: Optional[str] = None, uids: Optional[list] = None) -> Optional[dict]:
         if Patchstorage.PS_API_TOKEN is None:
             raise PatchstorageException('Not authenticated')
 
@@ -106,7 +106,7 @@ class Patchstorage:
 
         if id is not None:
             r = requests.get(PS_API_URL + '/patches/' + str(id),
-                             headers={'User-Agent': 'patchbot-1.0'})
+                             headers={'User-Agent': 'lv2-plugin-uploader'})
 
             if not r.ok:
                 click.echo(r.status_code)
