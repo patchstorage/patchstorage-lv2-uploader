@@ -130,4 +130,5 @@ dmypy.json
 # Project specific
 .vscode/
 backup/
+dist/
 data.json
