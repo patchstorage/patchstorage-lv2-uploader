@@ -10,7 +10,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -131,5 +130,4 @@ dmypy.json
 # Project specific
 .vscode/
 backup/
-dist/
 data.json
