@@ -81,6 +81,8 @@ class Patchstorage:
         assert r.status_code == 200, r.content
         assert resp_data['targets'], f"Error: No targets field for platform {platform_id}"
 
+        click.echo(f"Supported targets: {[t['slug'] for t in resp_data['targets']]}")
+
         return resp_data['targets']
 
     @staticmethod
@@ -139,6 +141,8 @@ class Patchstorage:
 
             if resp_data.get('id') == id:
                 return resp_data
+            
+            raise PatchstorageException(f'Failed to get plugin {str(id)}')
 
         if uids is not None:
 
@@ -163,7 +167,13 @@ class Patchstorage:
                 if len(resp_data) > 1:
                     raise PatchstorageException(
                         f'Multiple plugins found with provided uids {uids}')
-                return resp_data[0]
+                
+                r = requests.get(PS_API_URL + '/patches/' + str(resp_data[0]['id']),
+                             headers={'User-Agent': Patchstorage.USER_AGENT})
+                
+                resp_data = Patchstorage.decode_json_response(r)
+
+                return resp_data
 
         return None
 
@@ -274,15 +284,15 @@ class Patchstorage:
             if force:
                 result = Patchstorage.update(folder, data, uploaded['id'])
 
-            # if auto, upload only if revision is different
+            # if auto, upload only if revision is different or not same targets
             elif auto:
-                if uploaded['revision'] == data['revision']:
-                    click.echo(f'Skip: {folder} is up-to-date')
+                if uploaded['revision'] == data['revision'] and len(uploaded['files']) == len(data['files']):
+                    click.echo(f'Skip: {folder} same version & targets')
                     return
 
                 result = Patchstorage.update(folder, data, uploaded['id'])
 
-            elif not click.confirm(f'(?): Update {folder} (local-{data["revision"]} vs cloud-{uploaded["revision"]})?'):
+            elif not click.confirm(f'(?): Update {folder} (local-ver:{data["revision"]}, cloud-ver:{uploaded["revision"]}, local-targets:{len(data["files"])}, cloud-targets:{len(uploaded["files"])})?'):
                 return
 
             else:
