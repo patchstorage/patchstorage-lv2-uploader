@@ -1,4 +1,4 @@
-from typing import Optional, Union, Any, Optional, Iterator, Dict, List
+from typing import Optional, Union, Any, Iterator, Dict, List
 import os
 from platform import system
 import json
@@ -571,7 +571,7 @@ class PatchstorageBundle(Bundle):
     def get_patchstorage_data(self, platform_id: int, licenses_map: dict, categories_map: dict, overwrites: dict, default_tags: list) -> dict:
         assert self._data is not None
     
-        return {
+        data = {
             'uids': self.get_uids(),
             'state': self.get_state_id(),
             'platform': platform_id,
@@ -584,6 +584,13 @@ class PatchstorageBundle(Bundle):
             'source_code_url': self.get_source_code_url(overwrites),
             'donate_url': self.get_donate_url(overwrites)
         }
+
+        # Remove fields with None values
+        for key in list(data):
+            if data[key] is None:
+                del data[key]
+
+        return data
     
     def create_artwork(self, target_path: pathlib.Path) -> pathlib.Path:
         assert self._data is not None

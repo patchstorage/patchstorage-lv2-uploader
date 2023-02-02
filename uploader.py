@@ -5,8 +5,7 @@ import pathlib
 import json
 import requests
 import click
-import pathlib
-from bundles import PatchstorageMultiTargetBundle, PluginFieldMissing, BundleBadContents, PluginBadContents
+from bundles import PatchstorageMultiTargetBundle, PluginFieldMissing, BundleBadContents
 
 
 PS_API_URL = 'https://patchstorage.com/api/beta'
@@ -25,27 +24,34 @@ if DEBUG:
 
 
 class PatchstorageException(Exception):
-    pass
+    """Base exception for Patchstorage class errors"""
 
-# TODO: prepare requests and send using a separate staticmethod w/ exception handling
+
 class Patchstorage:
+    """Patchstorage API client class"""
+    # TODO: prepare requests and send using a separate staticmethod w/ exception handling
 
     PS_API_TOKEN = None
     USER_AGENT = 'lv2-plugin-uploader'
 
     @staticmethod
-    def decode_json_response(r: requests.Response) -> dict:
+    def decode_json_response(resp: requests.Response) -> dict:
+        """Decode JSON response from Patchstorage API"""
+
         resp_data: dict = {}
-        
+
         try:
-            resp_data = r.json()
-        except requests.exceptions.JSONDecodeError as e:
-            raise PatchstorageException(f'Failed to decode JSON response for {r.url}')
+            resp_data = resp.json()
+        except requests.exceptions.JSONDecodeError as err:
+            raise PatchstorageException(
+                f'Failed to decode JSON response for {resp.url}') from err
 
         return resp_data
 
     @staticmethod
     def auth(username: str, password: str) -> None:
+        """Authenticate with Patchstorage API"""
+
         assert PS_API_URL is not None
         assert username
         assert password
@@ -54,39 +60,45 @@ class Patchstorage:
 
         click.echo(f'Authenticating: {username} ({url})')
 
-        r = requests.post(url, data={
+        resp = requests.post(url, data={
             'username': username,
             'password': password
         }, headers={'User-Agent': Patchstorage.USER_AGENT})
 
-        resp_data = Patchstorage.decode_json_response(r)
+        resp_data = Patchstorage.decode_json_response(resp)
 
-        if not r.ok:
+        if not resp.ok:
             raise PatchstorageException('Failed to authenticate')
 
         Patchstorage.PS_API_TOKEN = resp_data['token']
 
     @staticmethod
     def get_platform_targets(platform_id: int) -> list:
+        """Get supported targets for a given platform ID"""
+
         assert PS_API_URL is not None
 
         url = f"{PS_API_URL}/platforms/{platform_id}"
 
         click.echo(f'Getting supported targets from {url}')
 
-        r = requests.get(url, headers={'User-Agent': Patchstorage.USER_AGENT})
+        resp = requests.get(
+            url, headers={'User-Agent': Patchstorage.USER_AGENT})
 
-        resp_data = Patchstorage.decode_json_response(r)
+        resp_data = Patchstorage.decode_json_response(resp)
 
-        assert r.status_code == 200, r.content
+        assert resp.status_code == 200, resp.content
         assert resp_data['targets'], f"Error: No targets field for platform {platform_id}"
 
-        click.echo(f"Supported targets: {[t['slug'] for t in resp_data['targets']]}")
+        click.echo(
+            f"Supported targets: {[t['slug'] for t in resp_data['targets']]}")
 
         return resp_data['targets']
 
     @staticmethod
     def upload_file(path: str, target_id: Optional[int] = None) -> str:
+        """Upload a file to Patchstorage"""
+
         assert isinstance(path, str)
         assert isinstance(target_id, int) or target_id is None
 
@@ -100,7 +112,7 @@ class Patchstorage:
         if target_id is not None:
             post_data['target'] = target_id
 
-        r = requests.post(PS_API_URL + '/files', data=post_data, files={
+        resp = requests.post(PS_API_URL + '/files', data=post_data, files={
             'file': open(path, 'rb')
         },
             headers={
@@ -108,41 +120,44 @@ class Patchstorage:
             'User-Agent': Patchstorage.USER_AGENT
         })
 
-        resp_data = Patchstorage.decode_json_response(r)
+        resp_data = Patchstorage.decode_json_response(resp)
 
-        if not r.ok:
+        if not resp.ok:
             raise PatchstorageException(
                 f'Failed to upload file {path} {resp_data}')
 
-        click.secho(f'Uploaded: {resp_data["filename"]} (ID:{resp_data["id"]})')
+        click.secho(
+            f'Uploaded: {resp_data["filename"]} (ID:{resp_data["id"]})')
 
         return resp_data['id']
 
     @staticmethod
-    def get(id: Optional[str] = None, uids: Optional[list] = None) -> Optional[dict]:
+    def get(pid: Optional[str] = None, uids: Optional[list] = None) -> Optional[dict]:
+        """Get a patch from Patchstorage by ID or UID"""
+
         if Patchstorage.PS_API_TOKEN is None:
             raise PatchstorageException('Not authenticated')
 
-        if id is None and uids is None:
+        if pid is None and uids is None:
             raise PatchstorageException(
                 'Internal error - must provide ID or UID')
 
-        if id is not None:
-            r = requests.get(PS_API_URL + '/patches/' + str(id),
-                             headers={'User-Agent': Patchstorage.USER_AGENT})
+        if pid is not None:
+            resp = requests.get(PS_API_URL + '/patches/' + str(pid),
+                                headers={'User-Agent': Patchstorage.USER_AGENT})
 
-            resp_data = Patchstorage.decode_json_response(r)
+            resp_data = Patchstorage.decode_json_response(resp)
 
-            if not r.ok:
-                click.echo(r.status_code)
-                click.echo(r.request)
+            if not resp.ok:
+                click.echo(resp.status_code)
+                click.echo(resp.request)
                 click.echo(resp_data)
-                raise PatchstorageException(f'Failed to get plugin {str(id)}')
+                raise PatchstorageException(f'Failed to get plugin {str(pid)}')
 
-            if resp_data.get('id') == id:
+            if resp_data.get('id') == pid:
                 return resp_data
-            
-            raise PatchstorageException(f'Failed to get plugin {str(id)}')
+
+            raise PatchstorageException(f'Failed to get plugin {str(pid)}')
 
         if uids is not None:
 
@@ -151,14 +166,14 @@ class Patchstorage:
                 'platforms[]': PS_LV2_PLATFORM_ID
             }
 
-            r = requests.get(PS_API_URL + '/patches/', params=params,
-                             headers={'User-Agent': Patchstorage.USER_AGENT})
+            resp = requests.get(PS_API_URL + '/patches/', params=params,
+                                headers={'User-Agent': Patchstorage.USER_AGENT})
 
-            resp_data = Patchstorage.decode_json_response(r)
+            resp_data = Patchstorage.decode_json_response(resp)
 
-            if not r.ok:
-                click.echo(r.status_code)
-                click.echo(r.request)
+            if not resp.ok:
+                click.echo(resp.status_code)
+                click.echo(resp.request)
                 click.echo(resp_data)
                 raise PatchstorageException(
                     f'Failed to get plugin with uids {uids}')
@@ -167,11 +182,11 @@ class Patchstorage:
                 if len(resp_data) > 1:
                     raise PatchstorageException(
                         f'Multiple plugins found with provided uids {uids}')
-                
-                r = requests.get(PS_API_URL + '/patches/' + str(resp_data[0]['id']),
-                             headers={'User-Agent': Patchstorage.USER_AGENT})
-                
-                resp_data = Patchstorage.decode_json_response(r)
+
+                resp = requests.get(PS_API_URL + '/patches/' + str(resp_data[0]['id']),
+                                    headers={'User-Agent': Patchstorage.USER_AGENT})
+
+                resp_data = Patchstorage.decode_json_response(resp)
 
                 return resp_data
 
@@ -179,6 +194,8 @@ class Patchstorage:
 
     @staticmethod
     def upload(folder: str, data: dict) -> dict:
+        """Upload a patch to Patchstorage"""
+
         assert 'artwork' in data, 'Missing artwork field in patchstorage.json'
         assert 'files' in data, 'Missing files field in patchstorage.json'
 
@@ -199,24 +216,26 @@ class Patchstorage:
 
         click.echo(f'Uploading: {folder}')
 
-        r = requests.post(PS_API_URL + '/patches', json=data, headers={
+        resp = requests.post(PS_API_URL + '/patches', json=data, headers={
             'Authorization': 'Bearer ' + Patchstorage.PS_API_TOKEN,
             'User-Agent': Patchstorage.USER_AGENT
         })
 
-        resp_data = Patchstorage.decode_json_response(r)
+        resp_data = Patchstorage.decode_json_response(resp)
 
-        if not r.ok:
+        if not resp.ok:
             raise PatchstorageException(
                 f'Failed to upload {folder} {resp_data}')
 
         return resp_data
 
     @staticmethod
-    def update(folder: str, data: dict, id: int) -> dict:
+    def update(folder: str, data: dict, pid: int) -> dict:
+        """Update a patch on Patchstorage"""
+
         if Patchstorage.PS_API_TOKEN is None:
             raise PatchstorageException('Not authenticated')
-        
+
         click.echo(f'Updating: {folder}')
 
         artwork_id = Patchstorage.upload_file(data['artwork'])
@@ -231,13 +250,13 @@ class Patchstorage:
         data['artwork'] = int(artwork_id)
         data['files'] = file_ids
 
-        r = requests.put(PS_API_URL + '/patches/' + str(id), json=data, headers={
+        resp = requests.put(PS_API_URL + '/patches/' + str(pid), json=data, headers={
             'Authorization': 'Bearer ' + Patchstorage.PS_API_TOKEN
         })
 
-        resp_data = Patchstorage.decode_json_response(r)
+        resp_data = Patchstorage.decode_json_response(resp)
 
-        if not r.ok:
+        if not resp.ok:
             raise PatchstorageException(
                 f'Failed to update {folder} {resp_data}')
 
@@ -245,9 +264,10 @@ class Patchstorage:
 
     @staticmethod
     def push(username: str, folder: str, auto: bool, force: bool) -> None:
+        """Push a patch to Patchstorage"""
 
-        with open(os.path.join(PATH_DIST, folder, 'patchstorage.json'), 'r') as f:
-            data = json.loads(f.read())
+        with open(os.path.join(PATH_DIST, folder, 'patchstorage.json'), 'r', encoding='utf8') as file:
+            data = json.loads(file.read())
 
         if 'uids' not in data or len(data['uids']) == 0:
             raise PatchstorageException(
@@ -298,14 +318,16 @@ class Patchstorage:
             else:
                 result = Patchstorage.update(folder, data, uploaded['id'])
 
-        click.secho(f'Published: {result["url"]} (ID:{result["id"]})', fg='green')
+        click.secho(
+            f'Published: {result["url"]} (ID:{result["id"]})', fg='green')
 
 
 class PluginManagerException(Exception):
-    pass
+    """PluginManager Exception"""
 
 
 class PluginManager:
+    """Plugin Manager class"""
 
     def __init__(self) -> None:
         assert PATH_ROOT
@@ -322,106 +344,126 @@ class PluginManager:
         self.multi_bundles_map: dict = {}
         self._context: Optional[dict] = None
 
-    @staticmethod    
+    @staticmethod
     def load_json_data(filename: str) -> dict:
+        """Load JSON data from file"""
+
         try:
             path = PATH_ROOT / filename
-            with open(path, "r") as f:
-                return json.loads(f.read())
-        except FileNotFoundError:
-            raise PluginManagerException(f'Missing {filename} file in {PATH_ROOT}')
-        except json.decoder.JSONDecodeError:
-            raise PluginManagerException(f'Invalid JSON data in {filename}')
+            with open(path, "r", encoding='utf8') as file:
+                return json.loads(file.read())
+        except FileNotFoundError as err:
+            raise PluginManagerException(
+                f'Missing {filename} file in {PATH_ROOT}') from err
+        except json.decoder.JSONDecodeError as err:
+            raise PluginManagerException(
+                f'Invalid JSON data in {filename}') from err
 
     @staticmethod
     def do_cleanup(path: pathlib.Path) -> None:
+        """Cleanup directory"""
+
         assert isinstance(path, pathlib.Path), f'Invalid path type: {path}'
 
         if path.exists():
             try:
                 shutil.rmtree(path)
-            except OSError:
-                raise PluginManagerException(f'Failed to cleanup {path}')
-        
+            except OSError as err:
+                raise PluginManagerException(
+                    f'Failed to cleanup {path}') from err
+
         path.mkdir(parents=True, exist_ok=True)
 
     def scan_plugins_directory(self) -> dict:
+        """Scan plugins directory and return a dict with plugin info"""
+
         if not self.plugins_path.exists():
-            raise PluginManagerException(f'Plugins directory not found: {PATH_PLUGINS}')
-        
+            raise PluginManagerException(
+                f'Plugins directory not found: {PATH_PLUGINS}')
+
         click.echo(f"Supported targets: {[t['slug'] for t in self.targets]}")
 
-        folders_found = [path for path in self.plugins_path.iterdir() if path.is_dir()]
-        
+        folders_found = [
+            path for path in self.plugins_path.iterdir() if path.is_dir()]
+
         click.echo(f"Target folders found: {[str(f) for f in folders_found]}")
 
         candidates: dict = {}
 
-        for t in self.targets:
-            t_folder = self.plugins_path / t['slug']
+        for target in self.targets:
+            target_folder = self.plugins_path / target['slug']
 
-            if not t_folder.exists():
-                click.echo(f'Warning: No folder found for target \'{t["slug"]}\'')
+            if not target_folder.exists():
+                click.echo(
+                    f'Warning: No folder found for target \'{target["slug"]}\'')
                 continue
 
-            for p_path in t_folder.iterdir():
+            for plugin_path in target_folder.iterdir():
 
-                if not p_path.is_dir():
+                if not plugin_path.is_dir():
                     continue
-                
-                p_folder = p_path.parts[-1]
 
-                if p_folder not in candidates:
-                    candidates[p_folder] = []
+                plugin_folder = plugin_path.parts[-1]
 
-                candidates[p_folder].append({
-                    'slug': t['slug'],
-                    'id': t['id'],
-                    'path': p_path
+                if plugin_folder not in candidates:
+                    candidates[plugin_folder] = []
+
+                candidates[plugin_folder].append({
+                    'slug': target['slug'],
+                    'id': target['id'],
+                    'path': plugin_path
                 })
 
         click.echo(f"Total candidates: {len(candidates)}")
-        click.echo(f"Total candidates builds: {sum([len(candidates[p]) for p in candidates])}")
+        click.echo(
+            f"Total candidates builds: {sum([len(candidates[p]) for p in candidates])}")
 
         for package_name, targets_info in candidates.items():
-            multi_bundle = PatchstorageMultiTargetBundle(package_name, targets_info)
+            multi_bundle = PatchstorageMultiTargetBundle(
+                package_name, targets_info)
 
             try:
                 multi_bundle.validate_basic_files()
-            except (BundleBadContents, PluginFieldMissing) as e:
-                msg = f'Error: {e}'
+            except (BundleBadContents, PluginFieldMissing) as err:
+                msg = f'Error: {err}'
                 click.secho(msg, fg='red')
                 continue
-    
+
             self.multi_bundles_map[package_name] = multi_bundle
 
         return self.multi_bundles_map
-    
+
     def get_multi_bundle(self, package_name: str) -> PatchstorageMultiTargetBundle:
+        """Return a multi-bundle by package name"""
+
         if package_name not in self.multi_bundles_map:
             raise PluginManagerException(f'Bundle not found: {package_name}')
         return self.multi_bundles_map[package_name]
-    
+
     def prepare_bundles(self) -> None:
+        """Prepare bundles"""
+
         prepared = 0
         failed = 0
 
         for bundle in self.multi_bundles_map:
-            ok = self.prepare_bundle(self.multi_bundles_map[bundle])
-            if ok:
+            done = self.prepare_bundle(self.multi_bundles_map[bundle])
+            if done:
                 prepared += 1
             else:
                 failed += 1
-        
+
         click.secho(f'Prepared: {prepared}', fg='green')
         click.secho(f'Failed: {failed}', fg='red')
 
     def prepare_bundle(self, multi_bundle: PatchstorageMultiTargetBundle) -> bool:
+        """Prepare a bundle"""
+
         try:
             self._prepare_bundle(multi_bundle)
             return True
-        except (BundleBadContents, PluginFieldMissing) as e:
-            msg = f'Error: {e}'
+        except (BundleBadContents, PluginFieldMissing) as err:
+            msg = f'Error: {err}'
             click.secho(msg, fg='red')
             return False
 
@@ -452,7 +494,7 @@ class PluginManager:
         if DEBUG:
             debug_path = bundle.create_debug_json(path_data_json)
             click.echo(f'Debug: {debug_path}')
-        
+
         artwork_path = bundle.create_artwork(path_screenshot)
         click.echo(f'Created: {artwork_path}')
 
@@ -462,21 +504,24 @@ class PluginManager:
         patchstorage_data['artwork'] = str(artwork_path)
         patchstorage_data['files'] = tars_info
 
-        with open(path_ps_json, 'w', encoding='utf8') as f:
-            f.write(json.dumps(patchstorage_data, indent=4))
+        with open(path_ps_json, 'w', encoding='utf8') as file:
+            file.write(json.dumps(patchstorage_data, indent=4))
 
         click.echo(f'Created: {path_ps_json}')
         click.secho(f'Prepared: {path_plugins_dist}', fg='green')
 
     @staticmethod
     def push_bundles(plugin_name: str, username: str, password: str, auto: bool, force: bool) -> None:
+        """Pushes bundle(s) to Patchstorage.com"""
+
         Patchstorage.auth(username, password)
 
         if plugin_name != '':
             plugin_folder = PATH_DIST / plugin_name
 
             if not plugin_folder.exists():
-                raise Exception(f'Plugin {plugin_name} not found or not prepared')
+                raise Exception(
+                    f'Plugin {plugin_name} not found or not prepared')
 
             plugins_folders = [str(plugin_folder)]
         else:
@@ -485,15 +530,14 @@ class PluginManager:
         for folder in plugins_folders:
             try:
                 Patchstorage.push(username, folder, auto, force)
-            except PatchstorageException as e:
-                click.secho(f'Error: {e}', fg='red')
+            except PatchstorageException as err:
+                click.secho(f'Error: {err}', fg='red')
                 continue
 
 
 @click.group()
 def cli() -> None:
     """Very basic utility for publishing LV2 plugins to Patchstorage.com"""
-    pass
 
 
 @cli.command()
@@ -536,6 +580,6 @@ if __name__ == '__main__':
         click.secho(f'Error: {str(e)}', fg='red')
     except PatchstorageException as e:
         click.secho(f'Patchstorage Error: {str(e)}', fg='red')
-    # TODO: handle this inside Patchstorage class
     except requests.exceptions.ConnectionError as e:
+        # TODO: handle this inside Patchstorage class
         click.secho(f'Patchstorage Error: {str(e)}', fg='red')
