@@ -1,0 +1,801 @@
+{
+    "AirFont320.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "amsynth.lv2": {
+        "source_code_url": "https://github.com/amsynth/amsynth",
+        "donate_url": null
+    },
+    "artyfx.lv2": {
+        "source_code_url": "https://github.com/openAVproductions/openAV-ArtyFX",
+        "donate_url": null
+    },
+    "AVL_Drumkits_Perc.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "Black_Pearl_4A.lv2": {
+        "source_code_url": "https://github.com/x42/avldrums.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "Black_Pearl_4B.lv2": {
+        "source_code_url": "https://github.com/x42/avldrums.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "Black_Pearl_5.lv2": {
+        "source_code_url": "https://github.com/x42/avldrums.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "bolliedelay.lv2": {
+        "source_code_url": "https://github.com/MrBollie/bolliedelay.lv2",
+        "donate_url": null
+    },
+    "b_overdrive": {
+        "source_code_url": "https://github.com/pantherb/setBfree",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "b_reverb": {
+        "source_code_url": "https://github.com/pantherb/setBfree",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "b_synth": {
+        "source_code_url": "https://github.com/pantherb/setBfree",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "b_whirl": {
+        "source_code_url": "https://github.com/pantherb/setBfree",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "calf.lv2": {
+        "source_code_url": "https://github.com/calf-studio-gear/calf/",
+        "donate_url": null
+    },
+    "ewham.lv2": {
+        "source_code_url": "https://github.com/ssj71/infamousPlugins",
+        "donate_url": "http://ssj71.github.io/infamousPlugins/donate.html"
+    },
+    "hip2b.lv2": {
+        "source_code_url": "https://github.com/ssj71/infamousPlugins",
+        "donate_url": "http://ssj71.github.io/infamousPlugins/donate.html"
+    },
+    "fat1.lv2": {
+        "source_code_url": "https://github.com/x42/fat1.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "fil4.lv2": {
+        "source_code_url": "https://github.com/x42/fil4.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "FluidBass.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidBrass.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidChromPerc.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidDrums.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidEnsemble.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidEthnic.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidGM.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidGuitars.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidOrgans.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidPercussion.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidPianos.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidPipes.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidReeds.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidSoundFX.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidStrings.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidSynthFX.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidSynthLeads.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "FluidSynthPads.lv2": {
+        "source_code_url": "https://github.com/falkTX/FluidPlug",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-2voices.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "fomp.lv2": {
+        "source_code_url": "https://gitlab.com/drobilla/fomp",
+        "donate_url": "https://drobilla.net/pages/donate.html",
+        "license": "GPLv2"
+    },
+    "Freakclip.lv2": {
+        "source_code_url": "https://github.com/pjotrompet/Freaked",
+        "donate_url": null
+    },
+    "Freaktail.lv2": {
+        "source_code_url": "https://github.com/pjotrompet/Freaked",
+        "donate_url": null
+    },
+    "Granulator.lv2": {
+        "source_code_url": "https://github.com/pjotrompet/Freaked",
+        "donate_url": null
+    },
+    "Prefreak.lv2": {
+        "source_code_url": "https://github.com/pjotrompet/Freaked",
+        "donate_url": null
+    },
+    "GxSwitchlessWah.lv2": {
+        "source_code_url": "https://github.com/moddevices/GxSwitchlessWah.lv2",
+        "donate_url": null
+    },
+    "gx_slowgear.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxSlowGear.lv2",
+        "donate_url": null
+    },
+    "gx_studiopre.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_vibe.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_studiopre_st.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_alembic.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_barkgraphiceq.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_chorus.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_graphiceq.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_livelooper.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_mbcompressor.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_mbdistortion.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_mbecho.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_mbreverb.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_tremolo.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_zita_rev1.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxautowah.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxechocat.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxtubedelay.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxtubetremelo.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxtubevibrato.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_amp.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_amp_stereo.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_cabinet.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_colwah.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_compressor.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_cstb.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_delay.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_detune.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_digital_delay.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_digital_delay_st.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_duck_delay.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_duck_delay_st.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_echo.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_expander.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_flanger.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_fumaster.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_fuzz.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_fuzzface.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_fuzzfacefm.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_gcb_95.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_hfb.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_hogsfoot.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_hornet.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_jcm800pre.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_jcm800pre_st.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_mbdelay.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_mole.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_muff.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_oc_2.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_phaser.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_rangem.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_redeye.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_reverb.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_room_simulator.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_scream.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_shimmizita.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_susta.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gx_switched_tremolo.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxbooster.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxtilttone.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxts9.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "gxwah.lv2": {
+        "source_code_url": "https://github.com/moddevices/guitarix",
+        "donate_url": null
+    },
+    "Harmless.lv2": {
+        "source_code_url": "https://github.com/ninodewit/SHIRO-Plugins",
+        "donate_url": null
+    },
+    "Larynx.lv2": {
+        "source_code_url": "https://github.com/ninodewit/SHIRO-Plugins",
+        "donate_url": null
+    },
+    "Modulay.lv2": {
+        "source_code_url": "https://github.com/ninodewit/SHIRO-Plugins",
+        "donate_url": null
+    },
+    "Shiroverb.lv2": {
+        "source_code_url": "https://github.com/ninodewit/SHIRO-Plugins",
+        "donate_url": null
+    },
+    "mod-audio-to-cv.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-cv-plugins"
+    },
+    "mod-bigmuff.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-distortion",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-bpf.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities"
+    },
+    "mod-button-to-cv.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-cv-plugins"
+    },
+    "mod-capo.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-AmpVTS.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-AutoFilter.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-CEO.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-CabinetIII.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-CabinetIV.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-ChorusI.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Click.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Compress.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-CompressX2.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Eq10.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Eq10X2.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Eq4p.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-EqFA4p.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Fractal.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Narrower.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Noisegate.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-PhaserII.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Plate.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-PlateX2.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Saturate.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Scape.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Sin.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Spice.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-SpiceX2.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-ToneStack.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-White.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-caps-Wider.lv2": {
+        "source_code_url": "https://github.com/moddevices/caps-lv2",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-crossover2.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-crossover3.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-drop.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-ds1.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-distortion",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-gain.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-gain2x2.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-harmonizer.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-harmonizer2.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-harmonizercs.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-hpf.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-lpf.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-mda-Ambience.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Bandisto.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-BeatBox.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Combo.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-DX10.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-DeEss.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Degrade.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Delay.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Detune.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Dither.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-DubDelay.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Dynamics.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-EPiano.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Image.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-JX10.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Leslie.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Limiter.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Loudness.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-MultiBand.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Overdrive.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Piano.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-RePsycho.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-RezFilter.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-RingMod.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-RoundPan.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Shepard.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Splitter.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Stereo.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-SubSynth.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-TalkBox.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-TestTone.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-ThruZero.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Tracker.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Transient.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-VocInput.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-mda-Vocoder.lv2": {
+        "source_code_url": "https://github.com/moddevices/mda-lv2",
+        "donate_url": "https://drobilla.net/pages/donate.html"
+    },
+    "mod-midi-to-cv-mono.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-cv-plugins"
+    },
+    "mod-midi-to-cv-poly.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-cv-plugins"
+    },
+    "mod-supercapo.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-superwhammy.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-pitchshifter",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-switchbox2.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-switchtrigger4.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "mod-toggleswitch4.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "profiler.lv2": {
+        "source_code_url": "https://github.com/micahvdm/profiler",
+        "donate_url": null
+    },
+    "rubberband.lv2": {
+        "source_code_url": "https://github.com/falkTX/rubberband",
+        "donate_url": "https://www.patreon.com/falktx"
+    },
+    "sc_record.lv2": {
+        "source_code_url": "https://github.com/brummer10/screcord.lv2",
+        "donate_url": null
+    },
+    "tinygain.lv2": {
+        "source_code_url": "https://github.com/x42/tinyamp.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "triceratops.lv2": {
+        "source_code_url": "https://github.com/thunderox/triceratops"
+    },
+    "tuna.lv2": {
+        "source_code_url": "https://github.com/x42/tuna.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    },
+    "zeroconvo.lv2": {
+        "source_code_url": "https://github.com/x42/zconvo.lv2",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C"
+    }
+}
