@@ -118,5 +118,8 @@
         "mod-midi-to-cv-mono.lv2",
         "mod-button-to-cv.lv2",
         "mod-audio-to-cv.lv2"
+    ],
+    "https://github.com/brummer10/GxSVT.lv2": [
+    	"gx_ampegsvt.lv2"
     ]
 }
