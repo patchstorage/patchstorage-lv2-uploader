@@ -1,7 +1,4 @@
 {
-    "https://github.com/brummer10/GxSVT.lv2": [
-    	"gx_ampegsvt.lv2"
-    ],
     "https://github.com/micahvdm/profiler": [
         "profiler.lv2"
     ],
