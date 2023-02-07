@@ -33,7 +33,8 @@
         "Parametric",
         "Simulator",
         "Spectral",
-        "Waveshaper"
+        "Waveshaper",
+        "Multiband"
     ],
     "74": [
         "ps:synthesizer",
