@@ -1112,5 +1112,9 @@
     "ZamCompX2.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
         "donate_url": "https://www.zamaudio.com/?page_id=576"
+    },
+    "gx_ampegsvt.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxSVT.lv2",
+        "donate_url": null
     }
 }

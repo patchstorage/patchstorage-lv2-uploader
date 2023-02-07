@@ -523,6 +523,8 @@ class PatchstorageBundle(Bundle):
 
         result = []
         for cat in cats:
+            if cat not in inverted:
+                raise BundleBadContents(f'Missing category ID for {cat}. Please add it to the categories.json file.')
             result.append(int(inverted[cat]))
 
         return result
