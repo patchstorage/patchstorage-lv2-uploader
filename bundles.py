@@ -1,4 +1,4 @@
-from typing import Optional, Union, Any, Optional, Iterator, Dict, List
+from typing import Optional, Union, Any, Iterator, Dict, List
 import os
 from platform import system
 import json
@@ -165,13 +165,13 @@ class Plugin(BaseParser):
             return value
         return None
 
-    def _get_license(self) -> str:
+    def _get_license(self) -> Optional[str]:
         # TODO: how to handle missing licenses?
         value = self._get_field(doap.license)
-        if not value:
-            raise PluginFieldMissing('license', self.package_name)
+        # if not value:
+        #     raise PluginFieldMissing('license', self.package_name)
         # HACK: if license is linked as a file, get the filename
-        if 'file:///' in value:
+        if value and 'file:///' in value:
             path = self._parse_path(value)
             if path:
                 if path.exists():
@@ -330,7 +330,7 @@ class Bundle(BaseParser):
         self.format = 'n3'
         self.parsed_files: dict = {}
         self.plugins: list = []
-        self._data: Optional[dict] = None
+        self._data: dict = {}
 
     def validate_files(self) -> None:
         if not self.path.is_dir():
@@ -355,13 +355,17 @@ class Bundle(BaseParser):
 
         self._data = {'package_name': self.package_name, 'plugins': []}
 
+        plugins_data: list = []
+
         # ensure only one plugin per folder
         for triple in self._triples([None, rdfsyntax.type, lv2core.Plugin]):
             p = Plugin(graph=self.graph,
                             subject=triple[0], package_name=self.package_name)
             plugin_data = p.parse()
             self.plugins.append(p)
-            self._data['plugins'].append(plugin_data)
+            plugins_data.append(plugin_data)
+        
+        self._data['plugins'] = plugins_data
 
         if len(self.plugins) == 0:
             raise BundleBadContents(
@@ -436,7 +440,7 @@ class PatchstorageBundle(Bundle):
         
         return f'{self.package_name} Bundle'
 
-    def get_license_id(self, licenses: Optional[dict] = None) -> int:
+    def get_license_id(self, licenses: dict, data: dict) -> int:
         assert self._data is not None
 
         bundle_license = None
@@ -448,6 +452,10 @@ class PatchstorageBundle(Bundle):
                     raise BundleBadContents(f'License mismatch in {self.package_name} ({bundle_license} vs. {p.get_license()})')
             
             bundle_license = p.get_license()
+        
+        if bundle_license is None:
+            if self.package_name in data and 'license' in data[self.package_name]:
+                bundle_license = data[self.package_name]['license']
 
         if bundle_license is None:
             raise BundleBadContents(f'No license found for {self.package_name}')
@@ -463,7 +471,7 @@ class PatchstorageBundle(Bundle):
                 inverted[v.lower()] = key.lower()
 
         if bundle_license not in inverted:
-            raise BundleBadContents(f'Missing license slug for {bundle_license}')
+            raise BundleBadContents(f'Missing license ID for {bundle_license}. Please add it to the licenses.json file.')
 
         return int(inverted[bundle_license])
 
@@ -482,19 +490,23 @@ class PatchstorageBundle(Bundle):
 
         return max([p.get_revision() for p in self.plugins])
 
-    def get_source_code_url(self, sources: dict) -> Optional[str]:
+    def get_source_code_url(self, data: dict) -> Optional[str]:
         assert self._data is not None
 
-        inverted = {}
-        for key, value in sources.items():
-            for v in value:
-                inverted[v] = key
-
-        if self.package_name not in inverted:
+        if self.package_name not in data or 'source_code_url' not in data[self.package_name]:
             raise BundleBadContents(
-                f'Missing "source_url" field for {self.package_name}. Add it to sources.json')
+                f'Missing "source_code_url" field for {self.package_name}. Add plugin info in plugins.json')
 
-        return inverted[self.package_name]
+        return data[self.package_name]['source_code_url']
+
+    def get_donate_url(self, data: dict) -> Optional[str]:
+        assert self._data is not None
+
+        if self.package_name not in data or 'donate_url' not in data[self.package_name]:
+            raise BundleBadContents(
+                f'Missing "donate_url" field for {self.package_name}. Add plugin info in plugins.json')
+
+        return data[self.package_name]['donate_url']
 
     def get_category_ids(self, categories: dict) -> list:
         assert self._data is not None
@@ -511,11 +523,13 @@ class PatchstorageBundle(Bundle):
 
         result = []
         for cat in cats:
+            if cat not in inverted:
+                raise BundleBadContents(f'Missing category ID for {cat}. Please add it to the categories.json file.')
             result.append(int(inverted[cat]))
 
         return result
     
-    def get_tags(self, default_tags: list = None) -> list:
+    def get_tags(self, default_tags: Optional[list] = None) -> list:
         assert self._data is not None
 
         tags: list = []
@@ -556,21 +570,29 @@ class PatchstorageBundle(Bundle):
         
         return target_path
     
-    def get_patchstorage_data(self, platform_id: int, licenses: dict, categories: dict, sources: dict, default_tags: list) -> dict:
+    def get_patchstorage_data(self, platform_id: int, licenses_map: dict, categories_map: dict, overwrites: dict, default_tags: list) -> dict:
         assert self._data is not None
     
-        return {
+        data = {
             'uids': self.get_uids(),
             'state': self.get_state_id(),
             'platform': platform_id,
-            'categories': self.get_category_ids(categories),
+            'categories': self.get_category_ids(categories_map),
             'title': self.get_title(),
             'content': self.get_comment(),
             'tags': self.get_tags(default_tags=default_tags),
             'revision': self.get_revision(),
-            'license': self.get_license_id(licenses),
-            'source_code_url': self.get_source_code_url(sources)
+            'license': self.get_license_id(licenses_map, overwrites),
+            'source_code_url': self.get_source_code_url(overwrites),
+            'donate_url': self.get_donate_url(overwrites)
         }
+
+        # Remove fields with None values
+        for key in list(data):
+            if data[key] is None:
+                del data[key]
+
+        return data
     
     def create_artwork(self, target_path: pathlib.Path) -> pathlib.Path:
         assert self._data is not None

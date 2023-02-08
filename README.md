@@ -19,10 +19,10 @@ Here are the steps to upload plugins:
 
 1. Clone this repository on your computer.
 1. Move plugins you want to upload to the `/plugins` directory. All plugins should be in their corresponding folders inside build target folder, e.g. `/patchstorage-lv2-uploader/plugins/rpi-aarch64/mod-bigmuff.lv2/`
-1. Run `python ./uploader.py prepare all` - this command will generate `*.tar.gz` and `patchstorage.json` files in the `/dist` directory. Some information may be missing, so you will have to modify `licenses.json` or `sources.json` files.
+1. Run `python ./uploader.py prepare all` - this command will generate `*.tar.gz` and `patchstorage.json` files in the `/dist` directory. Some information may be missing, so you will have to modify `plugins.json` or `licenses.json` files.
 1. Check the `/dist` folder for the results, especially the `patchstorage.json` files. Make adjustments if needed.
 1. Run `python ./uploader push all --username <patchstorage_username>` command and follow the instructions. After uploading a plugin, please check the resulting entry on Patchstorage.
-1. If you made any changes to the `licenses.json` or `sources.json` files, create a pull request to this repo.
+1. If you made any changes to the `plugins.json` or `licenses.json` files, create a pull request to this repo.
 
 # TODO
 - Interactive `patchstorage.json` missing fields prompt during the `prepare` step.
