@@ -374,8 +374,14 @@ class PluginManager:
 
         path.mkdir(parents=True, exist_ok=True)
 
+    def get_bundle_overwrites(self, package_name) -> dict:
+        """Get bundle overwrites from loaded plugins.json"""
+        assert isinstance(self.overwrites, dict)
+
+        return self.overwrites.get(package_name, {})
+
     def scan_plugins_directory(self) -> dict:
-        """Scan plugins directory and return a dict with plugin info"""
+        """Scan plugins directory and return a dict with plugins info"""
 
         if not self.plugins_path.exists():
             raise PluginManagerException(
@@ -478,24 +484,25 @@ class PluginManager:
 
         multi_bundle.validate()
 
-        bundle = multi_bundle.bundles[0]
+        bundle_overwrites = self.get_bundle_overwrites(
+            multi_bundle.package_name)
 
         # patchstorage field validation happens here
-        patchstorage_data = bundle.get_patchstorage_data(
+        patchstorage_data = multi_bundle.get_patchstorage_data(
             platform_id=PS_LV2_PLATFORM_ID,
             licenses_map=self.licenses,
             categories_map=self.categories,
-            overwrites=self.overwrites,
+            overwrites=bundle_overwrites,
             default_tags=PS_TAGS_DEFAULT
         )
 
         self.do_cleanup(path_plugins_dist)
 
         if DEBUG:
-            debug_path = bundle.create_debug_json(path_data_json)
+            debug_path = multi_bundle.create_debug_json(path_data_json)
             click.echo(f'Debug: {debug_path}')
 
-        artwork_path = bundle.create_artwork(path_screenshot)
+        artwork_path = multi_bundle.create_artwork(path_screenshot)
         click.echo(f'Created: {artwork_path}')
 
         tars_info = multi_bundle.create_tarballs(path_plugins_dist)
