@@ -534,6 +534,37 @@ class PluginManager:
                 click.secho(f'Error: {err}', fg='red')
                 continue
 
+def copy_plugin_dir(source_dir: str, plugin_name: str, target_arch: str):
+    
+    # Make sure basic source folder exists
+    if os.path.exists(source_dir):
+        # Get current working directory for target
+        dirname, file = os.path.split(os.path.abspath(__file__))
+        if plugin_name == 'all':
+            # Walk through the source, copy each folder
+            s = pathlib.Path(source_dir)
+            for subfolder in s.iterdir():
+                target_dir = dirname + "/plugins/" + target_arch + "/" + subfolder.parts[-1]
+                # copytree will throw an exception if folder already exists, delete 
+                if os.path.exists(target_dir):
+                    shutil.rmtree(target_dir)
+                click.secho(f'Copying {subfolder.resolve()}...')
+                shutil.copytree(subfolder.resolve(), target_dir)
+        else:
+            source_dir = source_dir + "/" + plugin_name
+            if os.path.exists(source_dir):
+                target_dir = dirname + "/plugins/" + target_arch + "/" + plugin_name
+                # copytree will throw an exception if folder already exists, delete 
+                if os.path.exists(target_dir):
+                    shutil.rmtree(target_dir)
+                click.secho(f'Copying {source_dir}...')
+                shutil.copytree(source_dir, target_dir)
+            else:
+                click.secho(f'Plugin directory {source_dir} not found', fg='yellow')
+    else:
+        # The plugin / architecture was not  found
+        click.secho(f'Plugin source directory {source_dir} not found', fg='yellow')
+
 
 @click.group()
 def cli() -> None:
@@ -542,8 +573,28 @@ def cli() -> None:
 
 @cli.command()
 @click.argument('plugin_name', type=str, required=True)
-def prepare(plugin_name: str) -> None:
+@click.option('--from_builder_dir', type=str, required=False, help='LV2 Builder Folder Root')
+def prepare(plugin_name: str, from_builder_dir: str) -> None:
     """Prepare *.tar.gz and patchstorage.json files"""
+
+    # If the builder folder root was passed
+    if from_builder_dir:
+        # Make sure it exists
+        if not os.path.exists(from_builder_dir):
+            click.secho(f'Builder folder {from_builder_dir} not found', fg='red')
+            return
+        # Handle raspberrypi3-armv8
+        arch = "raspberrypi3_armv8"
+        source_dir = from_builder_dir + "/docker-workdir/" + arch
+        copy_plugin_dir(source_dir, plugin_name, "patchbox-os-arm32")
+        # Handle raspberrypi4_aarch64
+        arch = "raspberrypi4_aarch64"
+        source_dir = from_builder_dir + "/docker-workdir/" + arch
+        copy_plugin_dir(source_dir, plugin_name, "rpi-aarch64")
+        # Handle x86_64
+        arch = "x86_64"
+        source_dir = from_builder_dir + "/docker-workdir/" + arch
+        copy_plugin_dir(source_dir, plugin_name, "linux-amd64")
 
     manager = PluginManager()
     manager.scan_plugins_directory()
