@@ -18,6 +18,12 @@ PATH_DIST = PATH_ROOT / 'dist'
 # for dev purposes
 DEBUG = False
 
+TARGETS_MAP = {
+    "raspberrypi3_armv8" : "patchbox-os-arm32",
+    "raspberrypi4_aarch64" : "rpi-aarch64",
+    "x86_64" : "linux-amd64"
+}
+
 if DEBUG:
     PS_API_URL = 'http://localhost/api/beta'
     PS_LV2_PLATFORM_ID = 5027
@@ -538,29 +544,27 @@ def copy_plugin_dir(source_dir: str, plugin_name: str, target_arch: str):
     
     # Make sure basic source folder exists
     if os.path.exists(source_dir):
-        # Get current working directory for target
-        dirname, file = os.path.split(os.path.abspath(__file__))
         if plugin_name == 'all':
             # Walk through the source, copy each folder
             s = pathlib.Path(source_dir)
             for subfolder in s.iterdir():
-                target_dir = dirname + "/plugins/" + target_arch + "/" + subfolder.parts[-1]
+                target_dir = os.path.join(PATH_PLUGINS, target_arch, subfolder.parts[-1])
                 # copytree will throw an exception if folder already exists, delete 
                 if os.path.exists(target_dir):
                     shutil.rmtree(target_dir)
                 click.secho(f'Copying {subfolder.resolve()}...')
                 shutil.copytree(subfolder.resolve(), target_dir)
         else:
-            source_dir = source_dir + "/" + plugin_name
+            source_dir = os.path.join(source_dir, plugin_name)
             if os.path.exists(source_dir):
-                target_dir = dirname + "/plugins/" + target_arch + "/" + plugin_name
+                target_dir = os.path.join(PATH_PLUGINS, target_arch, plugin_name)
                 # copytree will throw an exception if folder already exists, delete 
                 if os.path.exists(target_dir):
                     shutil.rmtree(target_dir)
                 click.secho(f'Copying {source_dir}...')
                 shutil.copytree(source_dir, target_dir)
             else:
-                click.secho(f'Plugin directory {source_dir} not found', fg='yellow')
+                click.secho(f'Plugin directory {source_dir} not found', fg='red')
     else:
         # The plugin / architecture was not  found
         click.secho(f'Plugin source directory {source_dir} not found', fg='yellow')
@@ -570,31 +574,25 @@ def copy_plugin_dir(source_dir: str, plugin_name: str, target_arch: str):
 def cli() -> None:
     """Very basic utility for publishing LV2 plugins to Patchstorage.com"""
 
+@cli.command()
+@click.argument('plugin_name', type=str, required=True)
+@click.option('--from_builder_dir', type=str, required=True)
+def copy(plugin_name: str, from_builder_dir: str) -> None:
+        
+    # Make sure it exists
+    if not os.path.exists(from_builder_dir):
+        click.secho(f'Builder folder {from_builder_dir} not found', fg='red')
+        return
+    # Loop through target maps and copy
+    for key in TARGETS_MAP:
+        source_dir = os.path.join(from_builder_dir, "docker-workdir", key)
+        copy_plugin_dir(source_dir, plugin_name, TARGETS_MAP[key])
+
 
 @cli.command()
 @click.argument('plugin_name', type=str, required=True)
-@click.option('--from_builder_dir', type=str, required=False, help='LV2 Builder Folder Root')
 def prepare(plugin_name: str, from_builder_dir: str) -> None:
     """Prepare *.tar.gz and patchstorage.json files"""
-
-    # If the builder folder root was passed
-    if from_builder_dir:
-        # Make sure it exists
-        if not os.path.exists(from_builder_dir):
-            click.secho(f'Builder folder {from_builder_dir} not found', fg='red')
-            return
-        # Handle raspberrypi3-armv8
-        arch = "raspberrypi3_armv8"
-        source_dir = from_builder_dir + "/docker-workdir/" + arch
-        copy_plugin_dir(source_dir, plugin_name, "patchbox-os-arm32")
-        # Handle raspberrypi4_aarch64
-        arch = "raspberrypi4_aarch64"
-        source_dir = from_builder_dir + "/docker-workdir/" + arch
-        copy_plugin_dir(source_dir, plugin_name, "rpi-aarch64")
-        # Handle x86_64
-        arch = "x86_64"
-        source_dir = from_builder_dir + "/docker-workdir/" + arch
-        copy_plugin_dir(source_dir, plugin_name, "linux-amd64")
 
     manager = PluginManager()
     manager.scan_plugins_directory()
