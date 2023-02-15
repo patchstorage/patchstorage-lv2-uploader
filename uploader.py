@@ -18,6 +18,12 @@ PATH_DIST = PATH_ROOT / 'dist'
 # for dev purposes
 DEBUG = False
 
+TARGETS_MAP = {
+    "raspberrypi3_armv8" : "patchbox-os-arm32",
+    "raspberrypi4_aarch64" : "rpi-aarch64",
+    "x86_64" : "linux-amd64"
+}
+
 if DEBUG:
     PS_API_URL = 'http://localhost/api/beta'
     PS_LV2_PLATFORM_ID = 5027
@@ -541,15 +547,58 @@ class PluginManager:
                 click.secho(f'Error: {err}', fg='red')
                 continue
 
+def copy_plugin_dir(source_dir: str, plugin_name: str, target_arch: str):
+    
+    # Make sure basic source folder exists
+    if os.path.exists(source_dir):
+        if plugin_name == 'all':
+            # Walk through the source, copy each folder
+            s = pathlib.Path(source_dir)
+            for subfolder in s.iterdir():
+                target_dir = os.path.join(PATH_PLUGINS, target_arch, subfolder.parts[-1])
+                # copytree will throw an exception if folder already exists, delete 
+                if os.path.exists(target_dir):
+                    shutil.rmtree(target_dir)
+                click.secho(f'Copying {subfolder.resolve()}...')
+                shutil.copytree(subfolder.resolve(), target_dir)
+        else:
+            source_dir = os.path.join(source_dir, plugin_name)
+            if os.path.exists(source_dir):
+                target_dir = os.path.join(PATH_PLUGINS, target_arch, plugin_name)
+                # copytree will throw an exception if folder already exists, delete 
+                if os.path.exists(target_dir):
+                    shutil.rmtree(target_dir)
+                click.secho(f'Copying {source_dir}...')
+                shutil.copytree(source_dir, target_dir)
+            else:
+                click.secho(f'Plugin directory {source_dir} not found', fg='red')
+    else:
+        # The plugin / architecture was not  found
+        click.secho(f'Plugin source directory {source_dir} not found', fg='yellow')
+
 
 @click.group()
 def cli() -> None:
     """Very basic utility for publishing LV2 plugins to Patchstorage.com"""
 
+@cli.command()
+@click.argument('plugin_name', type=str, required=True)
+@click.option('--from_builder_dir', type=str, required=True)
+def copy(plugin_name: str, from_builder_dir: str) -> None:
+        
+    # Make sure it exists
+    if not os.path.exists(from_builder_dir):
+        click.secho(f'Builder folder {from_builder_dir} not found', fg='red')
+        return
+    # Loop through target maps and copy
+    for key in TARGETS_MAP:
+        source_dir = os.path.join(from_builder_dir, "docker-workdir", key)
+        copy_plugin_dir(source_dir, plugin_name, TARGETS_MAP[key])
+
 
 @cli.command()
 @click.argument('plugin_name', type=str, required=True)
-def prepare(plugin_name: str) -> None:
+def prepare(plugin_name: str, from_builder_dir: str) -> None:
     """Prepare *.tar.gz and patchstorage.json files"""
 
     manager = PluginManager()
