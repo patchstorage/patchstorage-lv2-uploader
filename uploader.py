@@ -55,7 +55,7 @@ class Patchstorage:
         return resp_data
 
     @staticmethod
-    def auth(username: str, password: str) -> None:
+    def auth(username: str, password: str) -> dict:
         """Authenticate with Patchstorage API"""
 
         assert PS_API_URL is not None
@@ -77,6 +77,8 @@ class Patchstorage:
             raise PatchstorageException('Failed to authenticate')
 
         Patchstorage.PS_API_TOKEN = resp_data['token']
+
+        return resp_data
 
     @staticmethod
     def get_platform_targets(platform_id: int) -> list:
@@ -257,7 +259,8 @@ class Patchstorage:
         data['files'] = file_ids
 
         resp = requests.put(PS_API_URL + '/patches/' + str(pid), json=data, headers={
-            'Authorization': 'Bearer ' + Patchstorage.PS_API_TOKEN
+            'Authorization': 'Bearer ' + Patchstorage.PS_API_TOKEN,
+            'User-Agent': Patchstorage.USER_AGENT
         })
 
         resp_data = Patchstorage.decode_json_response(resp)
@@ -269,7 +272,7 @@ class Patchstorage:
         return resp_data
 
     @staticmethod
-    def push(username: str, folder: str, auto: bool, force: bool) -> None:
+    def push(display_name: str, folder: str, auto: bool, force: bool, mark_wip: bool, mark_new_wip: bool) -> None:
         """Push a patch to Patchstorage"""
 
         with open(os.path.join(PATH_DIST, folder, 'patchstorage.json'), 'r', encoding='utf8') as file:
@@ -279,11 +282,19 @@ class Patchstorage:
             raise PatchstorageException(
                 f'Missing/bad uids field in patchstorage.json for {folder}')
 
+        if mark_wip is True:
+            click.echo(f'Marking: {folder} as WIP')
+            data['state'] = 150
+
         uploaded = Patchstorage.get(uids=data['uids'])
 
         # not uploaded or was removed from Patchstorage
         if uploaded is None:
             click.echo(f'Processing: {folder}')
+
+            if mark_new_wip is True:
+                click.echo(f'Marking: {folder} as UNTESTED')
+                data['state'] = 150
 
             if auto:
                 result = Patchstorage.upload(folder, data)
@@ -298,7 +309,7 @@ class Patchstorage:
         else:
 
             # check if uploaded by same user
-            if uploaded['author']['slug'].lower() == username.lower():
+            if uploaded['author']['slug'].lower() == display_name.lower():
                 # click.echo(f'{folder} was previously uploaded by you')
                 pass
             else:
@@ -312,8 +323,8 @@ class Patchstorage:
 
             # if auto, upload only if revision is different or not same targets
             elif auto:
-                if uploaded['revision'] == data['revision'] and len(uploaded['files']) == len(data['files']):
-                    click.echo(f'Skip: {folder} same version & targets')
+                if uploaded['revision'] == data['revision'] and len(uploaded['files']) == len(data['files']) and uploaded['state']['id'] == data['state']:
+                    click.echo(f'Skip: {folder} same version, targets and state')
                     return
 
                 result = Patchstorage.update(folder, data, uploaded['id'])
@@ -335,7 +346,7 @@ class PluginManagerException(Exception):
 class PluginManager:
     """Plugin Manager class"""
 
-    def __init__(self) -> None:
+    def __init__(self, context: Optional[dict] = None) -> None:
         assert PATH_ROOT
         assert PATH_PLUGINS
         assert PATH_DIST
@@ -348,7 +359,7 @@ class PluginManager:
         self.categories = self.load_json_data('categories.json')
         self.overwrites = self.load_json_data('plugins.json')
         self.multi_bundles_map: dict = {}
-        self._context: Optional[dict] = None
+        self._context: dict = context if context else {}
 
     @staticmethod
     def load_json_data(filename: str) -> dict:
@@ -380,7 +391,7 @@ class PluginManager:
 
         path.mkdir(parents=True, exist_ok=True)
 
-    def get_bundle_overwrites(self, package_name) -> dict:
+    def get_bundle_overwrites(self, package_name: str) -> dict:
         """Get bundle overwrites from loaded plugins.json"""
         assert isinstance(self.overwrites, dict)
 
@@ -523,11 +534,12 @@ class PluginManager:
         click.echo(f'Created: {path_ps_json}')
         click.secho(f'Prepared: {path_plugins_dist}', fg='green')
 
-    @staticmethod
-    def push_bundles(plugin_name: str, username: str, password: str, auto: bool, force: bool) -> None:
+    def push_bundles(self, plugin_name: str, username: str, password: str, auto: bool, force: bool) -> None:
         """Pushes bundle(s) to Patchstorage.com"""
 
-        Patchstorage.auth(username, password)
+        user_data = Patchstorage.auth(username, password)
+
+        display_name = user_data['display_name']
 
         if plugin_name != '':
             plugin_folder = PATH_DIST / plugin_name
@@ -542,13 +554,16 @@ class PluginManager:
 
         for folder in plugins_folders:
             try:
-                Patchstorage.push(username, folder, auto, force)
+                # TODO: use context for all settings
+                mark_wip = self._context.get('mark_wip', False)
+                mark_new_wip = self._context.get('mark_new_wip', False)
+                Patchstorage.push(display_name, folder, auto, force, mark_wip, mark_new_wip)
             except PatchstorageException as err:
                 click.secho(f'Error: {err}', fg='red')
                 continue
 
 def copy_plugin_dir(source_dir: str, plugin_name: str, target_arch: str):
-    
+    """Copy a plugin folder to the target folder"""
     # Make sure basic source folder exists
     if os.path.exists(source_dir):
         if plugin_name == 'all':
@@ -585,7 +600,8 @@ def cli() -> None:
 @click.argument('plugin_name', type=str, required=True)
 @click.option('--from_builder_dir', type=str, required=True)
 def copy(plugin_name: str, from_builder_dir: str) -> None:
-        
+    """Copy plugins from builder directory"""
+
     # Make sure it exists
     if not os.path.exists(from_builder_dir):
         click.secho(f'Builder folder {from_builder_dir} not found', fg='red')
@@ -618,13 +634,20 @@ def prepare(plugin_name: str, from_builder_dir: str) -> None:
 @click.password_option(help='Patchstorage Password', confirmation_prompt=False)
 @click.option('--auto', is_flag=True, default=False)
 @click.option('--force', is_flag=True, default=False)
-def push(plugin_name: str, username: str, password: str, auto: bool, force: bool) -> None:
+@click.option('--mark-wip', is_flag=True, default=False)
+@click.option('--mark-new-wip', is_flag=True, default=False)
+def push(plugin_name: str, username: str, password: str, auto: bool, force: bool, mark_wip: bool, mark_new_wip: bool) -> None:
     """Publish plugins to Patchstorage"""
 
     if plugin_name == 'all':
         plugin_name = ''
 
-    manager = PluginManager()
+    context = {
+        'mark_wip': mark_wip,
+        'mark_new_wip': mark_new_wip,
+    }
+
+    manager = PluginManager(context)
     manager.push_bundles(plugin_name, username, password, auto, force)
 
 
