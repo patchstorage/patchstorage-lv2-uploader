@@ -614,7 +614,7 @@ def copy(plugin_name: str, from_builder_dir: str) -> None:
 
 @cli.command()
 @click.argument('plugin_name', type=str, required=True)
-def prepare(plugin_name: str, from_builder_dir: str) -> None:
+def prepare(plugin_name: str) -> None:
     """Prepare *.tar.gz and patchstorage.json files"""
 
     manager = PluginManager()

@@ -1116,5 +1116,17 @@
     "gx_ampegsvt.lv2": {
         "source_code_url": "https://github.com/brummer10/GxSVT.lv2",
         "donate_url": null
+    },
+    "gx_voxbass.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxVBassPreAmp.lv2",
+        "donate_url": null
+    },
+    "gx_ultracab.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxUltraCab.lv2",
+        "donate_url": null
+    },
+    "cabsim-IR-loader.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-cabsim-IR-loader",
+        "donate_url": null
     }
 }
