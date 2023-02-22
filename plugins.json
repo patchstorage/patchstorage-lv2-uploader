@@ -1127,6 +1127,15 @@
     },
     "cabsim-IR-loader.lv2": {
         "source_code_url": "https://github.com/moddevices/mod-cabsim-IR-loader",
-        "donate_url": null
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "MetalTone.lv2": {
+        "source_code_url": "https://github.com/brummer10/MetalTone",
+        "donate_url": null,
+        "license": "gpl-3-0"
+    },
+    "samplv1.lv2": {
+        "source_code_url": "https://github.com/rncbc/samplv1",
+        "donate_url": "https://flattr.com/@rncbc"
     }
 }
