@@ -830,7 +830,7 @@
     },
     "mod-audio-to-cv.lv2": {
         "source_code_url": "https://github.com/moddevices/mod-cv-plugins",
-        "donate_url": null
+        "donate_url": "https://github.com/sponsors/falkTX"
     },
     "mod-button-to-cv.lv2": {
         "source_code_url": "https://github.com/moddevices/mod-cv-plugins",
@@ -1137,5 +1137,41 @@
     "samplv1.lv2": {
         "source_code_url": "https://github.com/rncbc/samplv1",
         "donate_url": "https://flattr.com/@rncbc"
+    },
+    "gx_bajatubedriver.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxBaJaTubeDriver.lv2",
+        "donate_url": null
+    },
+    "gx_bottlerocket.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxBottleRocket.lv2",
+        "donate_url": null
+    },
+    "gx_epic.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxEpic.lv2",
+        "donate_url": null
+    },
+    "gx_guvnor.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxGuvnor.lv2",
+        "donate_url": null
+    },
+    "gx_hotbox.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxHotBox.lv2",
+        "donate_url": null
+    },
+    "gx_hyperion.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxHyperion.lv2",
+        "donate_url": null
+    },
+    "gx_KnightFuzz.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxKnightFuzz.lv2",
+        "donate_url": null
+    },
+    "gx_liquiddrive.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxLiquidDrive.lv2",
+        "donate_url": null
+    },
+    "gx_quack.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxQuack.lv2",
+        "donate_url": null
     }
 }
