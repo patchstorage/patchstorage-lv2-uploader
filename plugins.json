@@ -1173,5 +1173,13 @@
     "gx_quack.lv2": {
         "source_code_url": "https://github.com/brummer10/GxQuack.lv2",
         "donate_url": null
+    },
+    "gx_saturate.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxSaturator.lv2",
+        "donate_url": null
+    },
+    "gx_sd1sim.lv2": {
+        "source_code_url": "https://github.com/brummer10/GxSD1.lv2",
+        "donate_url": null
     }
 }
