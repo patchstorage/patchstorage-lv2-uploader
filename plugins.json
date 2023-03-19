@@ -1181,5 +1181,25 @@
     "gx_sd1sim.lv2": {
         "source_code_url": "https://github.com/brummer10/GxSD1.lv2",
         "donate_url": null
+    },
+    "abGate.lv2": {
+        "source_code_url": "http://hippie.lt/lv2/gate",
+        "donate_url": "https://www.paypal.com/donate?token=7tpxlSnyBUIRBJ1zWhBoJ_df_vUvzo4QSNHZk7Bri49LVE3tTiIIsPkg6T648zRHo8w83rPsuyS3Pl4K&locale.x=LT"
+    },
+    "Airwindows-StarChild.lv2": {
+        "source_code_url": "https://hannesbraun.net/ns/lv2/airwindows/starchild",
+        "donate_url": null
+    },
+    "alo.lv2": {
+        "source_code_url": "https://github.com/devcurmudgeon/alo",
+        "donate_url": null
+    },
+    "artyfx-bitta.lv2": {
+        "source_code_url": "https://github.com/openAVproductions/openAV-ArtyFX",
+        "donate_url": null
+    },
+    "carla-files.lv2": {
+        "source_code_url": "https://github.com/falkTX/Carla",
+        "donate_url": "https://github.com/sponsors/falkTX"
     }
 }
