@@ -1201,5 +1201,149 @@
     "carla-files.lv2": {
         "source_code_url": "https://github.com/falkTX/Carla",
         "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "carla-audiogain.lv2": {
+        "source_code_url": "https://github.com/falkTX/Carla",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "carla-miditools.lv2": {
+        "source_code_url": "https://github.com/falkTX/Carla",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "CollisionDrive.lv2": {
+        "source_code_url": "https://github.com/brummer10/CollisionDrive",
+        "donate_url": null
+    },
+    "Crypt.lv2": {
+        "source_code_url": "https://github.com/moddevices/crypt",
+        "donate_url": null
+    },
+    "dexed.lv2": {
+        "source_code_url": "https://github.com/dcoredump/dexed.lv2",
+        "donate_url": null
+    },
+    "distrho-a-fluidsynth.lv2": {
+        "source_code_url": "https://github.com/DISTRHO/DIE-Plugins/tree/main/plugins/a-fluidsynth.lv2",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "distrho-a-comp.lv2": {
+        "source_code_url": "https://github.com/DISTRHO/DIE-Plugins/tree/main/plugins/a-comp.lv2",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "DragonflyEarlyReflections.lv2": {
+        "source_code_url": "https://github.com/michaelwillis/dragonfly-reverb/tree/master/plugins/dragonfly-early-reflections",
+        "donate_url": "https://michaelwillis.github.io/dragonfly-reverb/donations.html"
+    },
+    "DragonflyHallReverb.lv2": {
+        "source_code_url": "https://github.com/michaelwillis/dragonfly-reverb/tree/master/plugins/dragonfly-hall-reverb",
+        "donate_url": "https://michaelwillis.github.io/dragonfly-reverb/donations.html"
+    },
+    "DragonflyPlateReverb.lv2": {
+        "source_code_url": "https://github.com/michaelwillis/dragonfly-reverb/tree/master/plugins/dragonfly-plate-reverb",
+        "donate_url": "https://michaelwillis.github.io/dragonfly-reverb/donations.html"
+    },
+    "DragonflyRoomReverb.lv2": {
+        "source_code_url": "https://github.com/michaelwillis/dragonfly-reverb/tree/master/plugins/dragonfly-room-reverb",
+        "donate_url": "https://michaelwillis.github.io/dragonfly-reverb/donations.html"
+    },
+    "FatFrog.lv2": {
+        "source_code_url": "https://github.com/brummer10/FatFrog",
+        "donate_url": null
+    },
+    "Harmonic_Exciter.lv2": {
+        "source_code_url": "https://github.com/brummer10/HarmonicExciter",
+        "donate_url": null
+    },
+    "mod-ams.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-ams-lv2",
+        "donate_url": null
+    },
+    "mod-arpeggiator.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-arpeggiator-lv2",
+        "donate_url": null
+    },
+    "mod-mixer.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-audio-mixer-lv2",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "mod-mixer-stereo.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-audio-mixer-lv2",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "modmeter.lv2": {
+        "source_code_url": "https://github.com/x42/modmeter.lv2",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "modspectre.lv2": {
+        "source_code_url": "https://github.com/x42/modspectre.lv2",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "system-noisegate.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-system-plugins/tree/master/mod-noisegate",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "advanced-noisegate.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-system-plugins/tree/master/mod-noisegate-advanced",
+        "donate_url": "https://github.com/sponsors/falkTX"
+    },
+    "system-compressor.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-system-plugins/tree/master/mod-compressor",
+        "donate_url": "https://github.com/sponsors/falkTX"        
+    },
+    "advanced-compressor.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-system-plugins/tree/master/mod-compressor-advanced",
+        "donate_url": "https://github.com/sponsors/falkTX"        
+    },
+    "mod-bypass.lv2": {
+        "source_code_url": "https://github.com/moddevices/mod-utilities/tree/master/HardwareBypass",
+        "donate_url": null
+    },
+    "molot-lite-mono.lv2": {
+        "source_code_url": "https://github.com/bernhardrusch/molot-lite-mono-lv2",
+        "donate_url": null
+    },
+    "avocado.lv2": {
+        "source_code_url": "https://github.com/remaincalm/dpfports/tree/master/avocado",
+        "donate_url": null
+    },
+    "floaty.lv2": {
+        "source_code_url": "https://github.com/remaincalm/dpfports/tree/master/floaty",
+        "donate_url": null
+    },
+    "mud.lv2": {
+        "source_code_url": "https://github.com/remaincalm/dpfports/tree/master/mud",
+        "donate_url": null
+    },
+    "paranoia.lv2": {
+        "source_code_url": "https://github.com/remaincalm/dpfports/tree/master/paranoia",
+        "donate_url": null
+    },
+    "rumor.lv2": {
+        "source_code_url": "https://github.com/brummer10/rumor",
+        "donate_url": null
+    },
+    "setbfree-controller.lv2": {
+        "source_code_url": "https://github.com/vallsv/setbfree-controller.lv2",
+        "donate_url": null
+    },
+    "Pitchotto.lv2": {
+        "source_code_url": "https://github.com/ninodewit/SHIRO-Plugins/tree/master/plugins",
+        "donate_url": null
+    },
+    "simsam.lv2": {
+        "source_code_url": "https://gitlab.com/edwillys/simsam.git",
+        "donate_url": null
+    },
+    "stone-phaser.lv2":  {
+        "source_code_url": "https://github.com/jpcima/stone-phaser",
+        "donate_url": null
+    },
+    "midi-display.lv2": {
+        "source_code_url": "https://github.com/vallsv/midi-display.lv2",
+        "donate_url": null
+    },
+    "PowerAmpImpulses.lv2": {
+        "source_code_url": "https://github.com/brummer10/ModularAmpToolKit.lv2/tree/main/PowerAmpImpulses",
+        "donate_url": null
     }
 }
