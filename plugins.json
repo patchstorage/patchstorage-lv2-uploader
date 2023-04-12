@@ -1344,6 +1344,22 @@
     },
     "PowerAmpImpulses.lv2": {
         "source_code_url": "https://github.com/brummer10/ModularAmpToolKit.lv2/tree/main/PowerAmpImpulses",
-        "donate_url": null
+        "donate_url": null,
+        "license": "gpl-3-0"        
+    },
+    "poweramps.lv2": {
+        "source_code_url": "https://github.com/brummer10/ModularAmpToolKit.lv2/tree/main/PowerAmps",
+        "donate_url": null,
+        "license": "gpl-3-0"
+    },
+    "PreAmpImpulses.lv2": {
+        "source_code_url": "https://github.com/brummer10/ModularAmpToolKit.lv2/tree/main/PreAmpImpulses",
+        "donate_url": null,
+        "license": "gpl-3-0"
+    },
+    "PreAmps.lv2": {
+        "source_code_url": "https://github.com/brummer10/ModularAmpToolKit.lv2/tree/main/PreAmps",
+        "donate_url": null,
+        "license": "gpl-3-0"
     }
 }
