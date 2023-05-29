@@ -1055,47 +1055,58 @@
     },
     "ZamAutoSat.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Distortion"]
     },
     "ZamDelay.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Delay"]
     },
     "ZamEQ2.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Equaliser"]
     },
     "ZamGate.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Gate"]
     },
     "ZamGateX2.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Gate"]
     },
     "ZamGEQ31.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Equaliser"]
     },
     "ZamHeadX2.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Utility"]
     },
     "ZaMaximX2.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Dynamics"]
     },
     "ZaMultiComp.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Compressor"]
     },
     "ZaMultiCompX2.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Compressor"]
     },
     "ZamTube.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
-        "donate_url": "https://www.zamaudio.com/?page_id=576"
+        "donate_url": "https://www.zamaudio.com/?page_id=576",
+        "categories": ["Utility"]
     },
     "ZamDynamicEQ.lv2": {
         "source_code_url": "https://github.com/zamaudio/zam-plugins",
@@ -1535,5 +1546,14 @@
     "SoulForce.lv2": {
         "source_code_url": "https://github.com/DISTRHO/DPF-Plugins/tree/master/plugins/SoulForce",
         "donate_url": null
+    },
+    "balance.lv2": {
+        "source_code_url": "https://github.com/x42/balance.lv2/tree/master",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C" 
+    },
+    "nodelay.lv2": {
+        "source_code_url": "https://github.com/x42/nodelay.lv2/tree/master",
+        "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C",
+        "categories": ["Delay"]
     }
 }
