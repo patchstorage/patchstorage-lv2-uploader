@@ -1555,5 +1555,9 @@
         "source_code_url": "https://github.com/x42/nodelay.lv2/tree/master",
         "donate_url": "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=TRMWW55W6SG6C",
         "categories": ["Delay"]
+    },
+    "AudioToCVPitch.lv2": {
+        "source_code_url": "https://github.com/DISTRHO/PitchTrackingSeries",
+        "donate_url": null
     }
 }
