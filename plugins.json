@@ -1559,5 +1559,16 @@
     "AudioToCVPitch.lv2": {
         "source_code_url": "https://github.com/DISTRHO/PitchTrackingSeries",
         "donate_url": null
+    },
+    "JTBassMIDI.lv2": {
+        "source_code_url": "https://github.com/jtemple967/JTBassMIDI",
+        "donate_url": null,
+        "categories": ["Utility"]
+    },
+    "JTBassSynth.lv2": {
+        "source_code_url": "https://github.com/jtemple967/JTBassSynth",
+        "donate_url": null,
+        "categories": ["Utility"]
     }
+
 }
